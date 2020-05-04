@@ -22,17 +22,18 @@ CREATE
   ) ;
 ALTER TABLE Country ADD CONSTRAINT Country_PK PRIMARY KEY ( Country ) ;
 
+drop table incedent CASCADE CONSTRAINTS;
 
 CREATE
   TABLE Incedent
   (
     Incedent_ID       NUMBER (11) NOT NULL ,
-    StartTime         DATE NOT NULL ,
-    EndTime           DATE NOT NULL ,
+    StartTime         TIMESTAMP NOT NULL ,
+    EndTime           TIMESTAMP NOT NULL ,
     Distance          NUMBER (9,3) ,
     Street_Street     VARCHAR2 (10 CHAR) NOT NULL ,
     Severity_Severity NUMBER (2) NOT NULL ,
-    Side_Severity     NUMBER (2) NOT NULL
+    Side_Side     VARCHAR2 (2) NOT NULL
   ) ;
 ALTER TABLE Incedent ADD CONSTRAINT Incedent_PK PRIMARY KEY ( Incedent_ID ) ;
 ALTER TABLE Incedent ADD CONSTRAINT Incedent_StartTime_EndTime_UN UNIQUE (
@@ -98,7 +99,7 @@ Severity_Severity ) REFERENCES Severity ( Severity ) ON
 DELETE CASCADE ;
 
 ALTER TABLE Incedent ADD CONSTRAINT Incedent_Side_FK FOREIGN KEY (
-Side_Severity ) REFERENCES Side ( Severity ) ON
+Side_Side ) REFERENCES Side ( Side ) ON
 DELETE CASCADE ;
 
 ALTER TABLE Incedent_Sourcev1 ADD CONSTRAINT Incedent_Sourcev1_Incedent_FK
