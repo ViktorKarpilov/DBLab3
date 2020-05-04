@@ -2,7 +2,7 @@ CREATE SEQUENCE seq_incedents
 MINVALUE 1
 START WITH 1
 INCREMENT BY 1
-CACHE 10;
+CACHE 1;
 
 CREATE OR REPLACE TRIGGER SEQ_INCEDENTS
 BEFORE INSERT ON INCEDENT
@@ -16,6 +16,8 @@ END;
 
 INSERT INTO SEVERITY(SEVERITY)
 VALUES (1);
+INSERT INTO SEVERITY(SEVERITY)
+VALUES (3);
 INSERT INTO COUNTRY(COUNTRY)
 VALUES ('USA');
 insert into STATE(state,country_country)
@@ -29,6 +31,14 @@ values ('bin');
 insert into side(side)
 values ('R');
 insert into incedent(starttime,endtime,distance,street_street,severity_severity,side_side)
+VALUES (TIMESTAMP'2016-03-08 12:41:00',TIMESTAMP'2016-03-08 12:42:00',20.1,'a',3,'R');
+insert into incedent(starttime,endtime,distance,street_street,severity_severity,side_side)
+VALUES (TIMESTAMP'2016-04-08 12:41:00',TIMESTAMP'2016-04-08 12:42:00',20.1,'a',3,'R');
+insert into incedent(starttime,endtime,distance,street_street,severity_severity,side_side)
 VALUES (TIMESTAMP'2016-03-08 12:40:00',TIMESTAMP'2016-03-08 12:41:00',20.1,'a',1,'R');
 insert into incedent_sourcev1(incedent_incedent_id,source_source)
 values (1,'bin');
+insert into incedent_sourcev1(incedent_incedent_id,source_source)
+values (12,'bin');
+insert into incedent_sourcev1(incedent_incedent_id,source_source)
+values (13,'bin');
