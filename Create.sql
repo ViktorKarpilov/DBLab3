@@ -4,12 +4,12 @@
 --   type:      Oracle Database 11g
 
 
-
+drop table City CASCADE CONSTRAINTS;
 
 CREATE
   TABLE City
   (
-    City        VARCHAR2 (10 CHAR) NOT NULL ,
+    City        VARCHAR2 (15 CHAR) NOT NULL ,
     State_State VARCHAR2 (10 CHAR) NOT NULL
   ) ;
 ALTER TABLE City ADD CONSTRAINT City_PK PRIMARY KEY ( City ) ;
@@ -31,7 +31,7 @@ CREATE
     StartTime         TIMESTAMP NOT NULL ,
     EndTime           TIMESTAMP NOT NULL ,
     Distance          NUMBER (9,3) ,
-    Street_Street     VARCHAR2 (10 CHAR) NOT NULL ,
+    Street_Street     VARCHAR2 (25 CHAR) NOT NULL ,
     Severity_Severity NUMBER (2) NOT NULL ,
     Side_Side     VARCHAR2 (2) NOT NULL
   ) ;
@@ -80,12 +80,13 @@ CREATE
   ) ;
 ALTER TABLE State ADD CONSTRAINT State_PK PRIMARY KEY ( State ) ;
 
+drop table street CASCADE CONSTRAINTS;
 
 CREATE
   TABLE Street
   (
-    Street    VARCHAR2 (10 CHAR) NOT NULL ,
-    City_City VARCHAR2 (10 CHAR) NOT NULL
+    Street    VARCHAR2 (25 CHAR) NOT NULL ,
+    City_City VARCHAR2 (15 CHAR) NOT NULL
   ) ;
 ALTER TABLE Street ADD CONSTRAINT Street_PK PRIMARY KEY ( Street ) ;
 
