@@ -93,3 +93,5 @@ for i in range(3000000):
         cursor.execute(command)
     except Exception as e:
         pass
+
+con.commit()

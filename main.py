@@ -28,7 +28,7 @@ try:
     print("Done connection")
     print("Start first query")  
 
-    cursor.execute("""SELECT city, severity, Count(*) as NumberOfHardIncedents from incedent_standart
+    cursor.execute("""SELECT city, severity, Count(*) as NumberOfHardIncedents from incedent_simple
                         group by (CITY,severity)
                         having severity > 2
                         ORDER BY CITY""") 
@@ -40,7 +40,7 @@ try:
 
 
     cursor.execute("""SELECT CITY, ROUND(Count(*)/(select count(*) from incedent),2) as PrecentOfAll
-                    from incedent_standart
+                    from incedent_simple
                     group by (CITY)""")
 
     PieQuery = {'Lables':[],'Values':[]}
@@ -50,16 +50,15 @@ try:
 
 
     cursor.execute("""SELECT substr(cast(to_char(STARTTIME, 'DD.MM.YYYY') as varchar(10)),4) as IncedentsDate,count(*)
-                    from incedent_standart
+                    from incedent_simple
                     GROUP BY substr(cast(to_char(STARTTIME, 'DD.MM.YYYY') as varchar(10)),4)
                     ORDER BY (to_Date('01.'||IncedentsDate))""")
 
     ScatterResult = {'X':[],'Y':[]}
     for result in cursor:
-        ScatterResult['X'].append(result[0])
+        ScatterResult['X'].append(str('`'+result[0]))
         ScatterResult['Y'].append(result[1])
 
-    print(ScatterResult)
 
     x = []
     for i in range(len(ScatterResult['X'])):
@@ -71,8 +70,8 @@ try:
     
         
         
-    # При тестуванні градус 3 дав найбільшу точність *shrug*
-    x_ = PolynomialFeatures(degree=3, include_bias=False).fit_transform(x)
+    # При тестуванні градус 5 дав найбільшу точність *shrug*
+    x_ = PolynomialFeatures(degree=5, include_bias=False).fit_transform(x)
     model = LinearRegression().fit(x_, y)
     r_sq = model.score(x_, y)
         
@@ -90,6 +89,7 @@ try:
     layout_title_text="Вивести відсоток аварій для кожного міста, відносно загальної кількості"
     )
     PieQuery = py.plot(fig)
+
     fig = go.Figure(
     data=[go.Scatter(x=ScatterResult['X'], y=ScatterResult['Y'])],
     layout_title_text="Динаміка кількості аварій по датам"
