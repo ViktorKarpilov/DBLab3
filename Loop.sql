@@ -27,15 +27,15 @@ BEGIN
     side := side_ar('R','R','R','R','R');
     
     
-    
     FOR j in 1..rows_num LOOP
     
+        
         insert into street(street,city_city)
         values (street(j),'LA');
         
         
-        insert into incedent(starttime,endtime,distance,street_street,severity_severity,side_side)
-        VALUES (starttime(j),endtime(j),distance(j),street(j),severity(j),side(j));
+        insert into incedent(incedent_id,starttime,endtime,distance,street_street,severity_severity,side_side)
+        VALUES (j,starttime(j),endtime(j),distance(j),street(j),severity(j),side(j));
         
         select incedent.incedent_id into incedent_id_inside
                                 from incedent 

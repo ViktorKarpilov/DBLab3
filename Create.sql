@@ -4,8 +4,6 @@
 --   type:      Oracle Database 11g
 
 
-drop table City CASCADE CONSTRAINTS;
-
 CREATE
   TABLE City
   (
@@ -22,7 +20,6 @@ CREATE
   ) ;
 ALTER TABLE Country ADD CONSTRAINT Country_PK PRIMARY KEY ( Country ) ;
 
-drop table incedent CASCADE CONSTRAINTS;
 
 CREATE
   TABLE Incedent
@@ -59,9 +56,9 @@ ALTER TABLE Severity ADD CONSTRAINT Severity_PK PRIMARY KEY ( Severity ) ;
 CREATE
   TABLE Side
   (
-    Severity NUMBER (2) NOT NULL
+    SIDE VARCHAR2 (2 CHAR) NOT NULL
   ) ;
-ALTER TABLE Side ADD CONSTRAINT Side_PK PRIMARY KEY ( Severity ) ;
+ALTER TABLE Side ADD CONSTRAINT Side_PK PRIMARY KEY ( SIDE ) ;
 
 
 CREATE
@@ -80,7 +77,6 @@ CREATE
   ) ;
 ALTER TABLE State ADD CONSTRAINT State_PK PRIMARY KEY ( State ) ;
 
-drop table street CASCADE CONSTRAINTS;
 
 CREATE
   TABLE Street
