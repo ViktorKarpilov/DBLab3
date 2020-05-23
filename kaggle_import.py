@@ -1,8 +1,9 @@
 import cx_Oracle
 import pandas as pd  
 import numpy as np
+import sys
 
-con = cx_Oracle.connect('viktor/password@localhost:1522') 
+con = cx_Oracle.connect('admin/password@localhost:1521') 
 cursor = con.cursor() 
 dataset = pd.read_csv(r'../incedents.csv')
 
@@ -25,6 +26,7 @@ for el in Severity:
     try:
         cursor.execute("INSERT INTO severity(severity) VALUES ({})".format(el))
     except:
+        print ("exception {0}".format(sys.exc_info()[0]))
         pass
 
 Severity = dataset[["City",'State','Country']]
@@ -75,6 +77,19 @@ Incedents = Incedents.to_numpy()
 print("Insert incedents...")
 i =0
 
+try:
+    command = """insert into side(side)
+    values ('R')"""
+    cursor.execute(command)
+    command = """insert into side(side)
+    values ('L')"""
+    cursor.execute(command)
+except Exception as e:
+    print(e)
+
+con.commit()
+
+
 for el in Incedents:
     try:
         command = """insert into incedent(incedent_id,starttime,endtime,distance,street_street,severity_severity,side_side)
@@ -93,10 +108,11 @@ con.commit()
 
 try:
     command = """insert into source(source)
-                values ('MapQuest');
+                values ('MapQuest')
                     """
     cursor.execute(command)
-except:
+except Exception as e:
+    print(e)
     pass
 
 

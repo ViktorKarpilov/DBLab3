@@ -26,10 +26,33 @@ BEGIN
     severity := severity_ar(1,1,2,2,3);
     side := side_ar('R','R','R','R','R');
     
+    INSERT INTO SEVERITY(SEVERITY)
+    VALUES (1);
+    INSERT INTO SEVERITY(SEVERITY)
+    VALUES (2);
+    INSERT INTO SEVERITY(SEVERITY)
+    VALUES (3);
+    
+    INSERT INTO COUNTRY(COUNTRY)
+    VALUES ('USA');
+    insert into STATE(state,country_country)
+    values ('colorado','USA');
+    insert into city(city,state_state)
+    values ('LA','colorado');
+    insert into street(street,city_city)
+    values ('a','LA');
+    insert into source(source)
+    values ('bin');
+    
+    insert into side(side)
+    values ('R');
+    insert into side(side)      
+    values ('L');
+
     
     FOR j in 1..rows_num LOOP
     
-        
+
         insert into street(street,city_city)
         values (street(j),'LA');
         
